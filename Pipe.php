@@ -14,10 +14,10 @@ class Pipe
         return $this->value;
     }
 
-    public function __call($name, $arguments)
+    public function __call($functionName, $arguments)
     {
-        if (function_exists($name)) {
-            $r = new ReflectionFunction($name);
+        if (function_exists($functionName)) {
+            $r = new ReflectionFunction($functionName);
 
             if (empty($r->getParameters()))
                 throw new BadMethodCallException('No arguments exist');
@@ -25,11 +25,11 @@ class Pipe
             $firstParameter = $r->getParameters()[0];
 
             if ($firstParameter->isPassedByReference()) {
-                $name($this->value, ...$arguments);
+                $functionName($this->value, ...$arguments);
                 return $this;
             }
 
-            $this->value = $name($this->value, ...$arguments);
+            $this->value = $functionName($this->value, ...$arguments);
             return $this;
         }
 
