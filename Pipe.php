@@ -16,11 +16,6 @@ class Pipe
 
     public function __call($name, $arguments)
     {
-        if (method_exists($this, $name)) {
-            $this->$name(...$arguments);
-            return $this;
-        }
-
         if (function_exists($name)) {
             $r = new ReflectionFunction($name);
 
@@ -52,6 +47,6 @@ class Pipe
 
 // EXAMPLE of a Pipe class operating on a value in a functional way
 $pipe = new Pipe("<script>alert('here comes the <boo>')</script>");
-$value = $pipe->htmlentities()->md5();
+$value = $pipe->htmlentities()->strtoupper();
 
-echo $value;
+echo $value . PHP_EOL;
