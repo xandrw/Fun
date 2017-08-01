@@ -27,9 +27,9 @@ class Pipe
             if (empty($r->getParameters()))
                 throw new BadMethodCallException('No arguments exist');
 
-            $parameter = $r->getParameters()[0];
+            $firstParameter = $r->getParameters()[0];
 
-            if ($parameter->isPassedByReference()) {
+            if ($firstParameter->isPassedByReference()) {
                 $name($this->value, ...$arguments);
                 return $this;
             }
@@ -50,7 +50,7 @@ class Pipe
     }
 }
 
-// EXAMPLE
+// EXAMPLE of a Pipe class operating on a value in a functional way
 $pipe = new Pipe("<script>alert('here comes the <boo>')</script>");
 $value = $pipe->htmlentities()->md5();
 
