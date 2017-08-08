@@ -36,6 +36,11 @@ abstract class Type
             throw new Exception("Value must be `{$this->type}`, `{$type}` given.");
     }
 
+    final public static function make($value)
+    {
+        return new static($value);
+    }
+
     final public function __invoke()
     {
         return $this->value;
@@ -75,6 +80,8 @@ $doubleType  = new DoubleType(1.1);
 $booleanType = new BooleanType(true);
 $arrayType   = new ArrayType([1, 2, 3]);
 
+$stringTypeMake = StringType::make('Andrei');
+
 var_dump(
     $stringType(),
     $integerType(),
@@ -82,5 +89,6 @@ var_dump(
     $booleanType(),
     $arrayType(),
     (string) $arrayType,
-    $stringType->parseInt($integerType)
+    $stringType->parseInt($integerType),
+    $stringTypeMake()
 );
