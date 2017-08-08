@@ -46,8 +46,11 @@ abstract class Type
         return $this->value;
     }
 
-    public function __toString()
+    final public function __toString()
     {
+        if (is_array($this->value) || is_object($this->value))
+            return serialize($this->value);
+
         return (string) $this->value;
     }
 }
@@ -66,13 +69,7 @@ class DoubleType extends Type {}
 
 class BooleanType extends Type {}
 
-class ArrayType extends Type
-{
-    public function __toString()
-    {
-        return serialize($this->value);
-    }
-}
+class ArrayType extends Type {}
 
 $stringType  = new StringType('Alex');
 $integerType = new IntegerType(1);
