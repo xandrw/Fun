@@ -18,7 +18,7 @@ abstract class Type
     final private function makeTypeFromClassName()
     {
         $className = strtolower(static::class);
-        $className = preg_replace('/type$/', '', $className);
+        $className = preg_replace('/(type)+$/', '', $className);
 
         $this->type = $className;
     }
