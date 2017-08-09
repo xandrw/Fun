@@ -56,7 +56,7 @@ abstract class Type
 
 class StringType extends Type
 {
-    public function parseInt(IntegerType $int)
+    public static function parseInt(IntegerType $int)
     {
         return (string) $int();
     }
@@ -85,7 +85,7 @@ var_dump(
     $booleanType(),
     $arrayType(),
     (string) $arrayType,
-    $stringType->parseInt($integerType),
+    $stringType::parseInt($integerType),
     $stringTypeMake()
 );
 
