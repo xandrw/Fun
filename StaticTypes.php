@@ -88,3 +88,22 @@ var_dump(
     $stringType->parseInt($integerType),
     $stringTypeMake()
 );
+
+/**
+ * OUTPUT:
+ * string(4) "Alex"
+ * int(1)
+ * float(1.1)
+ * bool(true)
+ * array(3) {
+ *   [0]=>
+ *   int(1)
+ *   [1]=>
+ *   int(2)
+ *   [2]=>
+ *   int(3)
+ * }
+ * string(30) "a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}"
+ * string(1) "1"
+ * string(6) "Andrei"
+ */
