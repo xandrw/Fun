@@ -2,10 +2,9 @@
 
 abstract class Type
 {
-    protected $value;
-    
+    private $value;
     private $type = null;
-    private static $types = ['boolean', 'integer', 'double', 'string', 'array', 'object', 'resource', 'NULL'];
+    private $types = ['boolean', 'integer', 'double', 'string', 'array', 'object', 'resource', 'NULL'];
 
     final public function __construct($value)
     {
@@ -25,7 +24,7 @@ abstract class Type
 
     final private function checkType()
     {
-        if (! in_array($this->type, self::$types) || $this->type === null)
+        if (! in_array($this->type, $this->types) || $this->type === null)
             throw new Exception("Invalid type given `{$this->type}`.");
     }
 
