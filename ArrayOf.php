@@ -1,11 +1,10 @@
-
 <?php
 
 abstract class ArrayOf extends ArrayObject
 {
     protected $type;
     
-    function __construct($input = [], $flags = ArrayObject::ARRAY_AS_PROPS, $iterator_class = 'ArrayIterator')
+    final function __construct($input = [], $flags = ArrayObject::ARRAY_AS_PROPS, $iterator_class = 'ArrayIterator')
     {
         if (!$this->type || !is_string($this->type))
             throw new Exception('Extending classes must specify a type.');
@@ -20,12 +19,12 @@ abstract class ArrayOf extends ArrayObject
         return ['boolean', 'integer', 'float', 'double', 'string', 'array', 'object', 'resource'];
     }
     
-    function getType()
+    final function getType()
     {
         return $this->type;
     }
     
-    function offsetSet($index, $value)
+    final function offsetSet($index, $value)
     {
         if (in_array(gettype($value), $this->getTypes()) && gettype($value) === $this->type) {
             parent::offsetSet($index, $value);
@@ -95,6 +94,8 @@ function printNames(ArrayOfPerson $persons)
     echo 'OBJECT PROPERTY: ' . $persons->andrei->getName() . PHP_EOL;
     
     print_r($persons);
+    echo serialize($persons);
+    print_r(unserialize(serialize($persons)));
 }
 
 printNames($persons);
