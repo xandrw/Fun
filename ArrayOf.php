@@ -77,7 +77,7 @@ class Person
     function getName() { return $this->name; }
 }
 
-class ArrayOfPerson extends ArrayOf { protected $type = 'Person'; }
+class ArrayOfPerson extends ArrayOf { protected $type = Person::class; }
 
 // $persons = new ArrayOfPerson([1, 2.1, 'string']); // Uncomment for Exception
 
