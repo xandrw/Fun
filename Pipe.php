@@ -45,7 +45,6 @@ class Pipe
     }
 }
 
-// EXAMPLE of a Pipe class operating on a value in a functional way
 $pipe = new Pipe("<script>alert('here comes the <boo>')</script>");
 $value = $pipe->htmlentities()->strtoupper();
 
